@@ -1,0 +1,168 @@
+body {
+  font-family: "Assistant", sans-serif;
+  background-color: #ececec;
+}
+
+h1 {
+  font-size: 18px;
+  font-weight: 600;
+  width: 82%;
+}
+
+h2 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+h4 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+h5 {
+  font-size: 16px;
+}
+
+.navbar {
+  background-image: url("../images/bg-header.png");
+  height: 80px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+.navbar .navbar-brand img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 40px;
+  width: 44px;
+}
+
+.content .card {
+  border-radius: 20px;
+}
+.content .card form .lokasi p {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+.content .card form label {
+  font-size: 14px;
+  margin: 10px 0px 0px 0px;
+}
+.content .card form button {
+  border-radius: 15px;
+  font-size: 14px;
+}
+
+.content-user .card.tabel {
+  border-radius: 8px;
+}
+.content-user .card {
+  border-radius: 20px;
+  min-height: 400px;
+}
+.content-user .card .btn-logout {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 0;
+  font-weight: 700;
+  margin: 20px 20px;
+  padding: 5px 26px;
+}
+.content-user .card .btn-kotak {
+  border-radius: 0;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  padding-left: 20px;
+}
+.content-user .card .btn-kotak-kanan {
+  border-radius: 0;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.content-user .card .user img {
+  width: 70px;
+  padding: 1px;
+  margin-bottom: 10px;
+  border-width: 3px;
+}
+.content-user .card .user h4 {
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+.content-user .card table th, .content-user .card table td {
+  font-size: 12px;
+}
+
+.content-kelola .card {
+  border-radius: 20px;
+  min-height: 400px;
+}
+.content-kelola .card table th, .content-kelola .card table td {
+  font-size: 14px;
+}
+
+.login {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../images/bg-login.PNG");
+}
+.login .card {
+  border-radius: 18px;
+  margin-top: 70px;
+  height: 580px;
+}
+.login .card img {
+  width: 180px;
+}
+.login .card form.log label {
+  font-size: 14px;
+  margin: 10px 0px 0px 0px;
+}
+.login .card form.log .d-flex {
+  margin-top: 120px;
+}
+.login .card form.log .d-flex button, .login .card form.log .d-flex a {
+  width: 49%;
+}
+.login .card form.reg {
+  padding-top: 30px;
+}
+.login .card form.reg label {
+  font-size: 14px;
+  margin: 0px 0px 0px 0px;
+}
+.login .card form.reg button {
+  margin-top: 72px;
+}
+
+@media (min-width: 992px) {
+  h1 {
+    font-size: 28px;
+    font-weight: 600;
+  }
+
+  h2 {
+    font-size: 26px;
+    font-weight: 600;
+  }
+
+  .navbar {
+    height: 180px;
+  }
+  .navbar .navbar-brand img {
+    height: 100px;
+    width: 110px;
+  }
+
+  .login .card {
+    margin-top: 40px;
+  }
+}/*# sourceMappingURL=main.css.map */
