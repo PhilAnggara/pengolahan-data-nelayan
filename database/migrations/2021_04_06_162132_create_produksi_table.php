@@ -15,6 +15,10 @@ class CreateProduksiTable extends Migration
     {
         Schema::create('produksi', function (Blueprint $table) {
             $table->id();
+            $table->date('tanggal');
+            $table->string('lokasi');
+            $table->string('pasar');
+            $table->integer('hasil_produksi');
             $table->timestamps();
         });
     }
