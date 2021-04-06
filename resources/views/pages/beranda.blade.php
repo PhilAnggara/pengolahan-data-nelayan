@@ -2,6 +2,7 @@
 @section('title', 'Pengolahan Data Nelayan')
 
 @section('content')
+@if (auth()->user()->roles == 'user')
 <section class="content-user">
   <div class="container-fluid px-3 py-2">
     <h4 class="text-uppercase ml-4 mt-4">Menu</h4>
@@ -22,4 +23,5 @@
     </div>  
   </div>
 </section>
+@endif
 @endsection

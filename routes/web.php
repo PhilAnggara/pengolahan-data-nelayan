@@ -19,7 +19,8 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
 
-  Route::get('beranda', 'BerandaController@index');
+  Route::get('beranda', 'BerandaController@index')
+  ->name('beranda');
 
 });
 Auth::routes();

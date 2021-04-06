@@ -117,7 +117,7 @@ h5 {
 .login .card {
   border-radius: 18px;
   margin-top: 70px;
-  height: 580px;
+  min-height: 580px;
 }
 .login .card img {
   width: 180px;
@@ -140,7 +140,7 @@ h5 {
   margin: 0px 0px 0px 0px;
 }
 .login .card form.reg button {
-  margin-top: 72px;
+  margin-top: 20px;
 }
 
 @media (min-width: 992px) {
