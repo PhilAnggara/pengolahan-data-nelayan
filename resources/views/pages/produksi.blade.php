@@ -18,7 +18,7 @@
               <div class="form-group">
                 <label for="lokasi">Lokasi</label>
                 <select name="lokasi" required class="form-control form-control-sm">
-                  <option value="">-- Pilih Pasar --</option>
+                  <option selected disabled>-- Pilih Lokasi --</option>
                   <option value="Pasar Siau">Siau</option>
                   <option value="Pasar Tagulandang">Tagulandang</option>
                 </select>

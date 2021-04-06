@@ -40,7 +40,7 @@
                     <div class="form-group col-sm-6">
                       <label for="kecamatan">Kecamatan</label>
                       <select name="kecamatan" required class="form-control form-control-sm">
-                        <option value="">-- Pilih kecamatan --</option>
+                        <option selected disabled>-- Pilih kecamatan --</option>
                         <option value="Tagulandang">Tagulandang</option>
                         <option value="Biaro">Biaro</option>
                       </select>
@@ -48,7 +48,7 @@
                     <div class="form-group col-sm-6">
                       <label for="desa">Desa</label>
                       <select name="desa" required class="form-control form-control-sm">
-                        <option value="">-- Pilih Desa --</option>
+                        <option selected disabled>-- Pilih Desa --</option>
                         <option value="Kisihang">Kisihang</option>
                         <option value="Bawuleu">Bawuleu</option>
                       </select>
