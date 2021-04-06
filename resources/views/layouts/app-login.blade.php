@@ -8,7 +8,9 @@
     @yield('title')
   </title>
 
+  @stack('prepend-style')
   @include('includes.style')
+  @stack('addon-style')
 
 </head>
 <body>
