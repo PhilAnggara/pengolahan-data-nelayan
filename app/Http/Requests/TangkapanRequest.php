@@ -24,7 +24,7 @@ class TangkapanRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required',
+            // 'user_id' => 'required|integer|exists:user,id',
             'tanggal' => 'required',
             'kecamatan' => 'required',
             'desa' => 'required',

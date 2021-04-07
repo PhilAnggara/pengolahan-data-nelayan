@@ -10,7 +10,7 @@
     <div class="card shadow-sm">
       <div class="card-body">
         <h4>Kelola Data Hasil Tangkapan <i class="far text-muted fa-edit ml-1"></i></h4>
-        <table class="table table-bordered table-responsive-sm text-center">
+        <table class="table table-bordered table-responsive-sm text-center text-nowrap">
           <thead class="thead-light">
             <tr>
               <th scope="col">#</th>
@@ -24,8 +24,8 @@
             @forelse ($items as $item)
             <tr>
               <th scope="row">1</th>
-              <td>{{ $item->pasar }}</td>
-              <td>{{ $item->tanggal }}</td>
+              <td>{{ $item->user->name }}</td>
+              <td>{{ Carbon\Carbon::parse($item->tanggal)->isoFormat('D MMMM Y') }}</td>
               <td>Desa {{ $item->desa }}, Kec.{{ $item->kecamatan }}</td>
               <td>{{ $item->hasil_tangkapan }}</td>
             </tr>

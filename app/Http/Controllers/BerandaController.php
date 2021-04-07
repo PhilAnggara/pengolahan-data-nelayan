@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produksi;
+use App\Models\Tangkapan;
 
 // use Carbon\Carbon;
 
@@ -12,9 +13,8 @@ class BerandaController extends Controller
 {
     public function index(Request $request)
     {
-        // return view('pages.beranda');
         $items = Produksi::all();
-        $things = Produksi::all();
+        $things = Tangkapan::all();
 
         return view('pages.beranda', [
             'items' => $items,

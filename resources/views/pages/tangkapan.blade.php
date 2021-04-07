@@ -30,14 +30,15 @@
               @csrf
               <div class="form-row">
                 <div class="form-group col-sm-6 p-3">
+                  <input name="user_id" type="hidden" value="{{ Auth::user()->id }}">
                   <label for="tanggal">Tanggal</label>
                   <input class="form-control form-control-sm" name="tanggal" type="date" placeholder="">
                   <label for="nama">Nama</label>
-                  <input class="form-control form-control-sm" name="nama" type="text" placeholder="" autocomplete="off">
+                  <input class="form-control form-control-sm bg-light" name="nama" type="text" value="{{ Auth::user()->name }}" readonly>
                   <label for="alamat">Alamat Pemilik</label>
-                  <input class="form-control form-control-sm" name="alamat" type="text" placeholder="" autocomplete="off">
-                  <label for="noTelp">No Telp</label>
-                  <input class="form-control form-control-sm" name="noTelp" type="number" placeholder="">
+                  <input class="form-control form-control-sm bg-light" name="alamat" type="text" value="{{ Auth::user()->alamat }}" readonly>
+                  <label for="no_telp">No Telp</label>
+                  <input class="form-control form-control-sm bg-light" name="no_telp" type="number" value="{{ Auth::user()->no_telp }}" readonly>
                 </div>
                 <div class="form-group col-sm-6 p-3">
                   <h5>Lokasi</h5>
@@ -67,8 +68,8 @@
                       </select>
                     </div>
                   </div>
-                  <label for="tangkapan">Hasil Tangkapan (kg)</label>
-                  <input class="form-control form-control-sm" name="tangkapan" type="number" placeholder="">
+                  <label for="hasil_tangkapan">Hasil Tangkapan (kg)</label>
+                  <input class="form-control form-control-sm" name="hasil_tangkapan" type="number" placeholder="">
                 </div>
               </div>
               <button type="submit" class="btn btn-secondary px-sm-5 py-2 mt-5 mb-2 ml-3">Simpan</button>

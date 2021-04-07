@@ -3,6 +3,7 @@
 
 @section('content')
 
+{{-- User --}}
 @if (auth()->user()->roles == 'user')
 <section class="content-user">
   <div class="container-fluid px-3 py-2">
@@ -11,7 +12,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col-sm-6 px-5 pt-3">
-            <a href="{{ route('beranda') }}" class="btn btn-block btn-outline-dark btn-sm btn-kotak text-left">INPUT HASIL TANGKAPAN</a>
+            <a href="{{ route('tangkapan.create') }}" class="btn btn-block btn-outline-dark btn-sm btn-kotak text-left">INPUT HASIL TANGKAPAN</a>
             <a href="{{ route('beranda') }}" class="btn btn-block btn-outline-dark btn-sm btn-kotak text-left">INFORMASI</a>
           </div>
           <div class="col-sm-6 px-5 pt-3 text-center user">
@@ -28,81 +29,87 @@
   </div>
 </section>
 @endif
+{{-- End of user --}}
 
+{{-- Admin --}}
 @if (auth()->user()->roles == 'admin')
 <section class="content-user">
-  <div class="container-fluid px-3 py-2">
+  <div class="container-fluid px-sm-3 py-2">
     <h4 class="text-uppercase ml-4 mt-4">Menu Admin</h4>
     <div class="card shadow-sm">
       <div class="card-body">
         <div class="row">
-          <div class="col-sm-5 pl-4 pt-3">
+          <div class="col-sm-5 pl-sm-4 pt-3">
             <div class="card shadow-sm tabel">
               <div class="card-body">
                 <h4 class="mb-2 ml-2">Hasil Tangkapan</h4>
-                <table class="table table-bordered table-responsive-sm text-center">
-                  <thead class="thead-light">
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Nama Pemilik</th>
-                      <th scope="col">Tanggal</th>
-                      <th scope="col">Lokasi</th>
-                      <th scope="col">Hasil Tangkapan</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @forelse ($things as $thing)
-                    <tr>
-                      <th scope="row">{{ $loop->iteration }}</th>
-                      <td>{{ $thing->pasar }}</td>
-                      <td>{{ Carbon\Carbon::parse($thing->tanggal)->isoFormat('D MMMM Y') }}</td>
-                      <td>Desa {{ $thing->desa }}, Kec.{{ $thing->kecamatan }}</td>
-                      <td>{{ $thing->hasil_tangkapan }}</td>
-                    </tr>
-                    @empty
-                    <tr>
-                      <th colspan="10" class="text-center">
-                        Data Kosong
-                      </th>
-                    </tr>
-                    @endforelse
-                  </tbody>
-                </table>
+                <div class="table-responsive">
+                  <table class="table table-bordered text-center text-nowrap">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nama Pemilik</th>
+                        <th scope="col">Tanggal</th>
+                        <th scope="col">Lokasi</th>
+                        <th scope="col">Hasil Tangkapan</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @forelse ($things as $thing)
+                      <tr>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $thing->user->name }}</td>
+                        <td>{{ Carbon\Carbon::parse($thing->tanggal)->isoFormat('D MMMM Y') }}</td>
+                        <td>{{ $thing->desa }}, Kec.{{ $thing->kecamatan }}</td>
+                        <td>{{ $thing->hasil_tangkapan }}</td>
+                      </tr>
+                      @empty
+                      <tr>
+                        <th colspan="10" class="text-center">
+                          Data Kosong
+                        </th>
+                      </tr>
+                      @endforelse
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-sm-5 pl-1 pt-3">
+          <div class="col-sm-5 pl-sm-1 pt-3">
             <div class="card shadow-sm tabel">
               <div class="card-body">
                 <h4 class="mb-2 ml-2">Hasil Produksi</h4>
-                <table class="table table-bordered table-responsive-sm text-center">
-                  <thead class="thead-light">
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Nama Pasar</th>
-                      <th scope="col">Tanggal</th>
-                      <th scope="col">Lokasi</th>
-                      <th scope="col">Hasil Produksi</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @forelse ($items as $item)
-                    <tr>
-                      <th scope="row">{{ $loop->iteration }}</th>
-                      <td>{{ $item->pasar }}</td>
-                      <td>{{ Carbon\Carbon::parse($item->created_at)->isoFormat('D MMMM Y') }}</td>
-                      <td>{{ $item->lokasi }}</td>
-                      <td>{{ $item->hasil_produksi }}</td>
-                    </tr>
-                    @empty
-                    <tr>
-                      <th colspan="10" class="text-center">
-                        Data Kosong
-                      </th>
-                    </tr>
-                    @endforelse
-                  </tbody>
-                </table>
+                <div class="table-responsive">
+                  <table class="table table-bordered text-center text-nowrap">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nama Pasar</th>
+                        <th scope="col">Tanggal</th>
+                        <th scope="col">Lokasi</th>
+                        <th scope="col">Hasil Produksi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @forelse ($items as $item)
+                      <tr>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $item->pasar }}</td>
+                        <td>{{ Carbon\Carbon::parse($item->created_at)->isoFormat('D MMMM Y') }}</td>
+                        <td>{{ $item->lokasi }}</td>
+                        <td>{{ $item->hasil_produksi }}</td>
+                      </tr>
+                      @empty
+                      <tr>
+                        <th colspan="10" class="text-center">
+                          Data Kosong
+                        </th>
+                      </tr>
+                      @endforelse
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
@@ -113,7 +120,7 @@
               <i class="fas text-muted fa-plus ml-1"></i>
               INPUT HASIL PRODUKSI
             </a>
-            <a href="{{ route('beranda') }}" class="btn btn-block btn-outline-dark btn-sm btn-kotak-kanan text-left">
+            <a href="{{ route('tangkapan.index') }}" class="btn btn-block btn-outline-dark btn-sm btn-kotak-kanan text-left">
               <i class="far text-muted fa-edit ml-1"></i>
               KELOLA DATA TANGKAPAN
             </a>
@@ -132,5 +139,6 @@
   </div>
 </section>
 @endif
+{{-- End of admin --}}
 
 @endsection
