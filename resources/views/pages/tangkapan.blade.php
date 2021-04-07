@@ -4,17 +4,30 @@
 @section('content')
 <section class="content">
   <div class="container-fluid px-3 py-2">
-    <a href="" class="btn">
+    <a href="{{ route('beranda') }}" class="btn">
       <i class="fas fa-lg text-muted fa-chevron-left"></i>
     </a>
     <div class="row">
       <div class="col-sm-4">
         <h2 class="text-uppercase ml-2">Input hasil tangkapan</h2>
       </div>
+
       <div class="col-sm-8">
         <div class="card shadow-sm">
           <div class="card-body">
-            <form>
+
+            @if ($errors->any())
+            <div class="alert alert-danger">
+              <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+            @endif
+
+            <form action="{{ route('tangkapan.store') }}" method="POST">
+              @csrf
               <div class="form-row">
                 <div class="form-group col-sm-6 p-3">
                   <label for="tanggal">Tanggal</label>
@@ -59,7 +72,7 @@
                 </div>
               </div>
               <button type="submit" class="btn btn-secondary px-sm-5 py-2 mt-5 mb-2 ml-3">Simpan</button>
-              <button type="submit" class="btn btn-light px-sm-5 py-2 mt-5 mb-2">Batalkan</button>
+              <a href="{{ route('beranda') }}" class="btn btn-sm btn-light px-sm-5 py-2 mt-5 mb-2">Batalkan</a>
             </form>
           </div>
         </div>          

@@ -24,7 +24,6 @@ class ProduksiRequest extends FormRequest
     public function rules()
     {
         return [
-            'tanggal' => 'required',
             'lokasi' => 'required',
             'pasar' => 'required',
             'hasil_produksi' => 'required'

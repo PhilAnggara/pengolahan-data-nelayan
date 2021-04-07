@@ -16,7 +16,7 @@
           </div>
           <div class="col-sm-6 px-5 pt-3 text-center user">
             <img src="{{ url('frontend/images/user-pic.png') }}" class="img-thumbnail rounded-circle">
-            <h4 class="text-uppercase">Nama User</h4>
+            <h4 class="text-uppercase">{{ Auth::user()->name }}</h4>
           </div>
         </div>
         <form action="{{ url('logout') }}" method="POST">
@@ -51,27 +51,21 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @forelse ($things as $thing)
                     <tr>
-                      <th scope="row">1</th>
-                      <td>Nama Satu</td>
-                      <td>06/04/2020</td>
-                      <td>Siau</td>
-                      <td>15</td>
+                      <th scope="row">{{ $loop->iteration }}</th>
+                      <td>{{ $thing->pasar }}</td>
+                      <td>{{ Carbon\Carbon::parse($thing->tanggal)->isoFormat('D MMMM Y') }}</td>
+                      <td>Desa {{ $thing->desa }}, Kec.{{ $thing->kecamatan }}</td>
+                      <td>{{ $thing->hasil_tangkapan }}</td>
                     </tr>
+                    @empty
                     <tr>
-                      <th scope="row">2</th>
-                      <td>Nama Dua</td>
-                      <td>06/04/2020</td>
-                      <td>Tagulandang</td>
-                      <td>14</td>
+                      <th colspan="10" class="text-center">
+                        Data Kosong
+                      </th>
                     </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>Nama Tiga</td>
-                      <td>06/04/2020</td>
-                      <td>Biaro</td>
-                      <td>21</td>
-                    </tr>
+                    @endforelse
                   </tbody>
                 </table>
               </div>
@@ -85,34 +79,28 @@
                   <thead class="thead-light">
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">Nama Pemilik</th>
+                      <th scope="col">Nama Pasar</th>
                       <th scope="col">Tanggal</th>
                       <th scope="col">Lokasi</th>
                       <th scope="col">Hasil Produksi</th>
                     </tr>
                   </thead>
                   <tbody>
+                    @forelse ($items as $item)
                     <tr>
-                      <th scope="row">1</th>
-                      <td>Nama Satu</td>
-                      <td>06/04/2020</td>
-                      <td>Siau</td>
-                      <td>15</td>
+                      <th scope="row">{{ $loop->iteration }}</th>
+                      <td>{{ $item->pasar }}</td>
+                      <td>{{ Carbon\Carbon::parse($item->created_at)->isoFormat('D MMMM Y') }}</td>
+                      <td>{{ $item->lokasi }}</td>
+                      <td>{{ $item->hasil_produksi }}</td>
                     </tr>
+                    @empty
                     <tr>
-                      <th scope="row">2</th>
-                      <td>Nama Dua</td>
-                      <td>06/04/2020</td>
-                      <td>Tagulandang</td>
-                      <td>14</td>
+                      <th colspan="10" class="text-center">
+                        Data Kosong
+                      </th>
                     </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>Nama Tiga</td>
-                      <td>06/04/2020</td>
-                      <td>Biaro</td>
-                      <td>21</td>
-                    </tr>
+                    @endforelse
                   </tbody>
                 </table>
               </div>
@@ -120,12 +108,16 @@
           </div>
           <div class="col-sm-2 pt-3 text-center user">
             <img src="{{ url('frontend/images/user-pic.png') }}" class="img-thumbnail rounded-circle">
-            <h4 class="text-uppercase">Nama User</h4>
+            <h4 class="text-uppercase">{{ Auth::user()->name }}</h4>
+            <a href="{{ route('produksi.create') }}" class="btn btn-block btn-outline-dark btn-sm btn-kotak-kanan text-left">
+              <i class="fas text-muted fa-plus ml-1"></i>
+              INPUT HASIL PRODUKSI
+            </a>
             <a href="{{ route('beranda') }}" class="btn btn-block btn-outline-dark btn-sm btn-kotak-kanan text-left">
               <i class="far text-muted fa-edit ml-1"></i>
               KELOLA DATA TANGKAPAN
             </a>
-            <a href="{{ route('beranda') }}" class="btn btn-block btn-outline-dark btn-sm btn-kotak-kanan text-left">
+            <a href="{{ route('produksi.index') }}" class="btn btn-block btn-outline-dark btn-sm btn-kotak-kanan text-left mb-5">
               <i class="far text-muted fa-edit ml-1"></i>
               KELOLA DATA PRODUKSI
             </a>

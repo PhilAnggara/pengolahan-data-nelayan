@@ -22,7 +22,11 @@ Route::middleware(['auth'])->group(function () {
   Route::get('beranda', 'BerandaController@index')
   ->name('beranda');
 
+  Route::resource('produksi', 'ProduksiController');
+  Route::resource('tangkapan', 'TangkapanController');
+
 });
+
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
