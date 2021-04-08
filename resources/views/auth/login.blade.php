@@ -17,7 +17,6 @@
 
               <div class="form-group">
                 <label for="username">Username</label>
-                {{-- <input type="text" class="form-control" name="username" autocomplete="off"> --}}
                 <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
                 @error('username')
                     <span class="invalid-feedback" role="alert">
@@ -28,7 +27,6 @@
               
               <div class="form-group">
                 <label for="password">Password</label>
-                {{-- <input type="password" class="form-control" name="password"> --}}
                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                 @error('password')
@@ -39,7 +37,7 @@
               </div>
               <div class="d-flex justify-content-between">
                 <button type="submit" class="btn btn-success">Masuk</button>
-                <a href="" class="btn btn-outline-success">Registrasi</a>
+                <a href="register" class="btn btn-outline-success">Registrasi</a>
               </div>
               
             </form>

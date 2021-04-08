@@ -24,6 +24,7 @@ Route::middleware(['auth'])->group(function () {
 
   Route::resource('produksi', 'ProduksiController');
   Route::resource('tangkapan', 'TangkapanController');
+  Route::get('tangkapan/desa/{id}', 'TangkapanController@desa');
 
 });
 

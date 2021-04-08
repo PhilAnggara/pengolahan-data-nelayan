@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Tangkapan;
 use App\Http\Requests\TangkapanRequest;
 
+use DB;
+
 use Illuminate\Http\Request;
 
 class TangkapanController extends Controller
@@ -23,7 +25,11 @@ class TangkapanController extends Controller
     
     public function create()
     {
-        return view('pages.tangkapan');
+        $data = DB::table('kecamatan')->get();
+        return view('pages.tangkapan')->with('data', $data);
+    }
+    public function desa($id){
+        echo json_encode(DB::table('desa')->where('id_kecamatan', $id)->get());
     }
 
   

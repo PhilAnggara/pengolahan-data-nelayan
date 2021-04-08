@@ -18,6 +18,6 @@ return [
     // 'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'failed' => 'Username atau Password salah.',
     'password' => 'Password yang anda masukan salah.',
-    'throttle' => 'Terlalu banyak upaya gagal. Silahkan coba lagi dalam :seconds seconds.',
+    'throttle' => 'Terlalu banyak upaya gagal. Silahkan coba lagi dalam :seconds detik.',
 
 ];
