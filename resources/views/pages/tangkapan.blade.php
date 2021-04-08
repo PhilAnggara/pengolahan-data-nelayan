@@ -16,16 +16,6 @@
         <div class="card shadow-sm">
           <div class="card-body">
 
-            {{-- @if ($errors->any())
-            <div class="alert alert-danger">
-              <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-              </ul>
-            </div>
-            @endif --}}
-
             <form action="{{ route('tangkapan.store') }}" method="POST">
               @csrf
               <div class="form-row">
@@ -58,8 +48,8 @@
                       <p>Kep. Siau Tagulandang Biaro</p>
                     </div>
                     <div class="form-group col-sm-6">
-                      <label for="kecamatan">Kecamatan</label>
-                      <select name="kecamatan" required class="form-control form-control-sm @error('kecamatan') is-invalid @enderror" id="kecamatan" value="{{ old('kecamatan') }}">
+                      <label for="kecamatan_id">Kecamatan</label>
+                      <select name="kecamatan_id" required class="form-control form-control-sm @error('kecamatan_id') is-invalid @enderror" id="kecamatan" value="{{ old('kecamatan_id') }}">
                         <option selected disabled>-- Pilih kecamatan --</option>
                         @foreach($data as $kec)
                           <option  value="{{ $kec->id }}">
@@ -67,7 +57,7 @@
                           </option>
                         @endforeach
                       </select>
-                      @error('kecamatan')
+                      @error('kecamatan_id')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
                         </span>
@@ -75,11 +65,11 @@
 
                     </div>
                     <div class="form-group col-sm-6">
-                      <label for="desa">Desa</label>
-                      <select name="desa" required class="form-control form-control-sm @error('desa') is-invalid @enderror" id="desa" value="{{ old('desa') }}">
+                      <label for="desa_id">Desa</label>
+                      <select name="desa_id" required class="form-control form-control-sm @error('desa_id') is-invalid @enderror" id="desa" value="{{ old('desa_id') }}">
                         <option selected disabled>*Masukan kecamatan</option>
                       </select>
-                      @error('desa')
+                      @error('desa_id')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
                         </span>
@@ -109,7 +99,6 @@
 @endsection
 
 @push('addon-script')
-{{-- <script src="{{ url('frontend/libraries/jquery/jquery-3.4.1.js') }}"></script> --}}
 <script>
 
   $(document).ready(function () {
@@ -131,7 +120,7 @@
           );
           response.forEach((element) => {
             $("#desa").append(
-                `<option value="${element["desa"]}">${element["desa"]}</option>`
+                `<option value="${element["id"]}">${element["desa"]}</option>`
             );
           });
         },

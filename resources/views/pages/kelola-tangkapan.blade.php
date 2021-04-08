@@ -23,10 +23,10 @@
           <tbody>
             @forelse ($items as $item)
             <tr>
-              <th scope="row">1</th>
+              <th scope="row">{{ $loop->iteration }}</th>
               <td>{{ $item->user->name }}</td>
               <td>{{ Carbon\Carbon::parse($item->tanggal)->isoFormat('D MMMM Y') }}</td>
-              <td>Desa {{ $item->desa }}, Kec.{{ $item->kecamatan }}</td>
+              <td>{{ $item->desa->desa }}, Kec. {{ $item->kecamatan->kecamatan }}</td>
               <td>{{ $item->hasil_tangkapan }}</td>
             </tr>
             @empty

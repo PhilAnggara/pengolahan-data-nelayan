@@ -16,16 +16,6 @@
         <div class="card shadow-sm">
           <div class="card-body">
 
-            {{-- @if ($errors->any())
-            <div class="alert alert-danger">
-              <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-              </ul>
-            </div>
-            @endif --}}
-
             <form class="p-3 col-sm-8" action="{{ route('produksi.store') }}" method="POST">
               @csrf
               <div class="form-group">
