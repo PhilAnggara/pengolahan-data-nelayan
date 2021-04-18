@@ -52,14 +52,27 @@ class ProduksiController extends Controller
 
 
     
-    public function update(Request $request, $id)
+    public function update(ProduksiRequest $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $item = Produksi::findOrFail($id);
+
+        $item->update($data);
+
+        return redirect()->route('produksi.index');
     }
 
 
     public function destroy($id)
     {
         //
+    }
+    
+    public function deleteChecked(Request $request)
+    {
+        $ids = $request->ids;
+        Produksi::whereIn('id',$ids)->delete();
+        return response()->json(['success'=>"Data berhasil dihapus!"]);
     }
 }

@@ -37,7 +37,7 @@
               </div>
               <div class="d-flex justify-content-between">
                 <button type="submit" class="btn btn-success">Masuk</button>
-                <a href="register" class="btn btn-outline-success">Registrasi</a>
+                <a href="{{ url('/') }}" class="btn btn-outline-success">Kembali</a>
               </div>
               
             </form>

@@ -26,6 +26,10 @@ Route::middleware(['auth'])->group(function () {
   Route::resource('tangkapan', 'TangkapanController');
   Route::get('tangkapan/desa/{id}', 'TangkapanController@desa');
 
+  // Delete
+  Route::delete('hapus-produksi', 'ProduksiController@deleteChecked')->name('hapus-produksi');
+  Route::delete('hapus-tangkapan', 'TangkapanController@deleteChecked')->name('hapus-tangkapan');
+
 });
 
 Auth::routes();

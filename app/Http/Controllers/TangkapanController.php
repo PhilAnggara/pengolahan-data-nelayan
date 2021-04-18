@@ -15,9 +15,11 @@ class TangkapanController extends Controller
     public function index()
     {
         $items = Tangkapan::all();
+        $data = DB::table('kecamatan')->get();
 
         return view('pages.kelola-tangkapan', [
-            'items' => $items
+            'items' => $items,
+            'data' => $data
         ]);
     }
 
@@ -28,6 +30,7 @@ class TangkapanController extends Controller
         $data = DB::table('kecamatan')->get();
         return view('pages.tangkapan')->with('data', $data);
     }
+    
     public function desa($id){
         echo json_encode(DB::table('desa')->where('id_kecamatan', $id)->get());
     }
@@ -58,14 +61,27 @@ class TangkapanController extends Controller
 
 
     
-    public function update(Request $request, $id)
+    public function update(TangkapanRequest $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $item = Tangkapan::findOrFail($id);
+
+        $item->update($data);
+
+        return redirect()->route('tangkapan.index');
     }
 
 
     public function destroy($id)
     {
         //
+    }
+    
+    public function deleteChecked(Request $request)
+    {
+        $ids = $request->ids;
+        Tangkapan::whereIn('id',$ids)->delete();
+        return response()->json(['success'=>"Data berhasil dihapus!"]);
     }
 }
