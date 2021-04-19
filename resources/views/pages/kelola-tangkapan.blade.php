@@ -38,7 +38,7 @@
                   <input class="form-check-input" name="ids" type="checkbox" value="{{ $item->id }}">
                 </div>
               </td>
-              <td>{{ $item->user->name }}</td>
+              <td>{{ $item->pemilik }}</td>
               <td>{{ Carbon\Carbon::parse($item->tanggal)->isoFormat('D MMMM Y') }}</td>
               <td>{{ $item->desa->desa }}, Kec. {{ $item->kecamatan->kecamatan }}</td>
               <td>{{ $item->hasil_tangkapan }}</td>
@@ -81,18 +81,12 @@
           <form action="{{ route('tangkapan.update', $item->id) }}" method="POST">
             @method('PUT')
             @csrf
-            {{-- <div class="form-group row">
-              <label for="user" class="col-sm-4 col-form-label">Nama Pemilik</label>
+            <div class="form-group row">
+              <label for="pemilik" class="col-sm-4 col-form-label">Nama Pemilik</label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" name="user" value="{{ $item->user->name }}">
+                <input type="text" class="form-control" name="pemilik" value="{{ $item->pemilik }}">
               </div>
             </div>
-            <div class="form-group row">
-              <label for="created_at" class="col-sm-4 col-form-label">Tanggal</label>
-              <div class="col-sm-8">
-                <input type="date" class="form-control" name="created_at" value="{{ Carbon\Carbon::parse($item->created_at)->isoFormat('Y-MM-DD') }}">
-              </div>
-            </div> --}}
             <div class="form-group row">
               <label for="tanggal" class="col-sm-4 col-form-label">Tanggal</label>
               <div class="col-sm-8">

@@ -16,6 +16,7 @@ class CreateTangkapanTable extends Migration
         Schema::create('tangkapan', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
+            $table->string('pemilik');
             $table->date('tanggal');
             $table->string('kecamatan');
             $table->string('desa');

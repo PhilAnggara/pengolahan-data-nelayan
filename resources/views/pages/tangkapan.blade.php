@@ -21,6 +21,7 @@
               <div class="form-row">
                 <div class="form-group col-sm-6 p-3">
                   <input name="user_id" type="hidden" value="{{ Auth::user()->id }}">
+                  <input name="pemilik" type="hidden" value="{{ Auth::user()->name }}">
                   <label for="tanggal">Tanggal</label>
                   <input class="form-control form-control-sm @error('tanggal') is-invalid @enderror" name="tanggal" type="date" value="{{ Carbon\Carbon::now()->isoFormat('Y-MM-DD') }}">
                   @error('tanggal')

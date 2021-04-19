@@ -25,6 +25,7 @@ class TangkapanRequest extends FormRequest
     {
         return [
             // 'user_id' => 'required|integer|exists:user,id',
+            'pemilik' => 'required',
             'tanggal' => 'required',
             // 'kecamatan_id' => 'required',
             // 'desa_id' => 'required',

@@ -58,7 +58,7 @@
                       @forelse ($things as $thing)
                       <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $thing->user->name }}</td>
+                        <td>{{ $thing->pemilik }}</td>
                         <td>{{ Carbon\Carbon::parse($thing->tanggal)->isoFormat('D MMMM Y') }}</td>
                         <td>{{ $thing->desa->desa }}, Kec. {{ $thing->kecamatan->kecamatan }}</td>
                         <td>{{ $thing->hasil_tangkapan }}</td>
