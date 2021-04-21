@@ -9,7 +9,7 @@
     </a>
     <div class="row">
       <div class="col-sm-4">
-        <h2 class="text-uppercase ml-2">Input hasil hasil</h2>
+        <h2 class="text-uppercase ml-2">Input hasil produksi</h2>
       </div>
       
       <div class="col-sm-8">

@@ -18,7 +18,9 @@ class CreateProduksiTable extends Migration
             // $table->date('tanggal');
             $table->string('lokasi');
             $table->string('pasar');
+            $table->string('ikan');
             $table->integer('hasil_produksi');
+            $table->integer('terjual');
             $table->timestamps();
         });
     }

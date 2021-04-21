@@ -49,16 +49,16 @@
                       <p>Kep. Siau Tagulandang Biaro</p>
                     </div>
                     <div class="form-group col-sm-6">
-                      <label for="kecamatan_id">Kecamatan</label>
-                      <select name="kecamatan_id" required class="form-control form-control-sm @error('kecamatan_id') is-invalid @enderror" id="kecamatan" value="{{ old('kecamatan_id') }}">
+                      <label for="kecamatan">Kecamatan</label>
+                      <select name="kecamatan" required class="form-control form-control-sm @error('kecamatan') is-invalid @enderror" id="kecamatan" value="{{ old('kecamatan') }}">
                         <option selected disabled>-- Pilih kecamatan --</option>
                         @foreach($data as $kec)
-                          <option  value="{{ $kec->id }}">
+                          <option value="{{ $kec->id }}">
                             {{ ucfirst($kec->kecamatan) }}
                           </option>
                         @endforeach
                       </select>
-                      @error('kecamatan_id')
+                      @error('kecamatan')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
                         </span>
@@ -66,11 +66,11 @@
 
                     </div>
                     <div class="form-group col-sm-6">
-                      <label for="desa_id">Desa</label>
-                      <select name="desa_id" required class="form-control form-control-sm @error('desa_id') is-invalid @enderror" id="desa" value="{{ old('desa_id') }}">
+                      <label for="desa">Desa</label>
+                      <select name="desa" required class="form-control form-control-sm @error('desa') is-invalid @enderror" id="desa" value="{{ old('desa') }}">
                         <option selected disabled>*Masukan kecamatan</option>
                       </select>
-                      @error('desa_id')
+                      @error('desa')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
                         </span>
@@ -78,6 +78,14 @@
 
                     </div>
                   </div>
+                  <label for="ikan">Jenis Ikan</label>
+                  <input class="form-control form-control-sm @error('ikan') is-invalid @enderror" name="ikan" type="text" placeholder="" value="{{ old('ikan') }}">
+                  @error('ikan')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+                  
                   <label for="hasil_tangkapan">Hasil Tangkapan (kg)</label>
                   <input class="form-control form-control-sm @error('hasil_tangkapan') is-invalid @enderror" name="hasil_tangkapan" type="number" placeholder="" value="{{ old('hasil_tangkapan') }}">
                   @error('hasil_tangkapan')
@@ -121,7 +129,7 @@
           );
           response.forEach((element) => {
             $("#desa").append(
-                `<option value="${element["id"]}">${element["desa"]}</option>`
+                `<option value="${element["desa"]}">${element["desa"]}</option>`
             );
           });
         },

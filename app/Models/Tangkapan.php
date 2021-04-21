@@ -11,7 +11,7 @@ class Tangkapan extends Model
     protected $table = 'tangkapan';
 
     protected $fillable = [
-        'user_id', 'pemilik', 'tanggal', 'kecamatan_id', 'desa_id', 'hasil_tangkapan', 'created_at'
+        'user_id', 'tanggal', 'kecamatan', 'desa', 'ikan', 'hasil_tangkapan', 'created_at'
     ];
 
 

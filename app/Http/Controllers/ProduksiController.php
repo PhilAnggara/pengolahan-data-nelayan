@@ -10,12 +10,19 @@ use Illuminate\Http\Request;
 class ProduksiController extends Controller
 {
   
-    public function index()
+    public function index(Request $request)
     {
-        $items = Produksi::all();
+        $keyword = $request->search;
+
+        if ($request->has('search')) {
+            $items = Produksi::Where('pasar', 'LIKE', '%'.$keyword.'%')->get();
+        } else {
+            $items = Produksi::all();
+        }
 
         return view('pages.kelola-produksi', [
-            'items' => $items
+            'items' => $items,
+            'keyword' => $keyword
         ]);
     }
 

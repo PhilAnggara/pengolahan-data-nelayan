@@ -20,6 +20,7 @@ class CreateTangkapanTable extends Migration
             $table->date('tanggal');
             $table->string('kecamatan');
             $table->string('desa');
+            $table->string('ikan');
             $table->integer('hasil_tangkapan');
             $table->timestamps();
         });

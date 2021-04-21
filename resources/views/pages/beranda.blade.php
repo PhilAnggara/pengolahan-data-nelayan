@@ -12,8 +12,10 @@
       <div class="card-body">
         <div class="row">
           <div class="col-sm-6 px-5 pt-3">
-            <a href="{{ route('tangkapan.create') }}" class="btn btn-block btn-outline-dark btn-sm btn-kotak text-left">INPUT HASIL TANGKAPAN</a>
-            <a href="{{ route('beranda') }}" class="btn btn-block btn-outline-dark btn-sm btn-kotak text-left">INFORMASI</a>
+            <a href="{{ route('tangkapan.create') }}" class="btn btn-block btn-outline-dark btn-sm btn-kotak text-left">
+              <i class="fas text-muted fa-plus mr-1"></i>
+              INPUT HASIL TANGKAPAN
+            </a>
           </div>
           <div class="col-sm-6 px-5 pt-3 text-center user">
             <img src="{{ url('frontend/images/user-pic.png') }}" class="img-thumbnail rounded-circle">
@@ -58,9 +60,9 @@
                       @forelse ($things as $thing)
                       <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $thing->pemilik }}</td>
+                        <td>{{ $thing->user->name }}</td>
                         <td>{{ Carbon\Carbon::parse($thing->tanggal)->isoFormat('D MMMM Y') }}</td>
-                        <td>{{ $thing->desa->desa }}, Kec. {{ $thing->kecamatan->kecamatan }}</td>
+                        <td>{{ $thing->desa }}, Kec. {{ $thing->kecamatan }}</td>
                         <td>{{ $thing->hasil_tangkapan }}</td>
                       </tr>
                       @empty
@@ -119,6 +121,10 @@
             <a href="{{ route('produksi.create') }}" class="btn btn-block btn-outline-dark btn-sm btn-kotak-kanan text-left">
               <i class="fas text-muted fa-plus ml-1"></i>
               INPUT HASIL PRODUKSI
+            </a>
+            <a href="{{ route('tangkapan.create') }}" class="btn btn-block btn-outline-dark btn-sm btn-kotak-kanan text-left">
+              <i class="fas text-muted fa-plus ml-1"></i>
+              INPUT HASIL TANGKAPAN
             </a>
             <a href="{{ route('tangkapan.index') }}" class="btn btn-block btn-outline-dark btn-sm btn-kotak-kanan text-left">
               <i class="far text-muted fa-edit ml-1"></i>

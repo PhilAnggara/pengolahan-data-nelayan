@@ -9,16 +9,15 @@
     </a>
     <div class="card shadow-sm">
       <div class="card-body">
-        <h4>Kelola Data Hasil Tangkapan <i class="far text-muted fa-edit ml-1"></i></h4>
-        {{-- @if ($errors->any())
-          <div class="alert alert-danger">
-            <ul>
-              @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-              @endforeach
-            </ul>
-          </div>
-        @endif --}}
+        <div class="row px-3">
+          <h4>Kelola Data Hasil Tangkapan <i class="far text-muted fa-edit ml-1"></i></h4>
+          <form class="form-inline nav-search ml-auto mb-2" action="{{ route('tangkapan.index') }}">
+            <input name="search" class="form-control form-control-sm ml-sm-5" type="search" placeholder="Search" aria-label="Search" autocomplete="off" value="{{ $keyword }}" style="width: 400px;" autofocus onfocus="var temp_value=this.value; this.value=''; this.value=temp_value">
+            <button class="btn btn-sm btn-primary my-2 my-sm-0" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </form> 
+        </div>
         <table class="table table-bordered table-responsive-sm text-center text-nowrap">
           <thead class="thead-light">
             <tr>
@@ -38,12 +37,16 @@
                   <input class="form-check-input" name="ids" type="checkbox" value="{{ $item->id }}">
                 </div>
               </td>
-              <td>{{ $item->pemilik }}</td>
+              <td>{{ $item->user->name }}</td>
               <td>{{ Carbon\Carbon::parse($item->tanggal)->isoFormat('D MMMM Y') }}</td>
-              <td>{{ $item->desa->desa }}, Kec. {{ $item->kecamatan->kecamatan }}</td>
+              <td>{{ $item->desa }}, Kec. {{ $item->kecamatan }}</td>
               <td>{{ $item->hasil_tangkapan }}</td>
               <td width="100px">
-                <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#edit-{{ $item->id }}">
+                <button class="btn btn-sm btn-info" style="width: 70px" type="button" data-toggle="modal" data-target="#detail-{{ $item->id }}">
+                  <i class="fas fa-eye fa-sm mr-1"></i>
+                  Detail
+                </button>
+                <button class="btn btn-sm btn-primary" style="width: 70px" type="button" data-toggle="modal" data-target="#edit-{{ $item->id }}">
                   <i class="fas fa-pen fa-sm mr-1"></i>
                   Edit
                 </button>
@@ -52,7 +55,7 @@
             @empty
             <tr>
               <th colspan="10" class="text-center">
-                Data Kosong
+                Data tidak ditemukan
               </th>
             </tr>
             @endforelse
@@ -66,13 +69,63 @@
     </div>  
   </div>
 
+  <!-- Detail -->
+  @foreach ($items as $item)
+  <div class="modal fade" id="detail-{{ $item->id }}" tabindex="-1" aria-labelledby="detailLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title font-weight-bold" id="detailLabel">Detail Tangkapan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th width="40%">Pemilik</th>
+                <td>{{ $item->user->name }}</td>
+              </tr>
+              <tr>
+                <th>Alamat</th>
+                <td>{{ $item->user->alamat }}</td>
+              </tr>
+              <tr>
+                <th>No Telp</th>
+                <td>{{ $item->user->no_telp }}</td>
+              </tr>
+              <tr>
+                <th>Tanggal</th>
+                <td>{{ Carbon\Carbon::parse($item->tanggal)->isoFormat('D MMMM Y') }}</td>
+              </tr>
+              <tr>
+                <th>Lokasi</th>
+                <td>{{ $item->desa }}, Kec. {{ $item->kecamatan }}</td>
+              </tr>
+              <tr>
+                <th>Jensi Ikan</th>
+                <td>{{ $item->ikan }}</td>
+              </tr>
+              <tr>
+                <th>Hasil Tangkapan</th>
+                <td>{{ $item->hasil_tangkapan }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  @endforeach
+  
   <!-- Edit -->
   @foreach ($items as $item)
   <div class="modal fade" id="edit-{{ $item->id }}" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title font-weight-bold" id="editLabel">Edit Data Hasil Produksi</h5>
+          <h5 class="modal-title font-weight-bold" id="editLabel">Edit Data Hasil Tangkapan</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -81,10 +134,12 @@
           <form action="{{ route('tangkapan.update', $item->id) }}" method="POST">
             @method('PUT')
             @csrf
+            <input name="uid" type="hidden" value="{{ $item->user_id }}">
+            
             <div class="form-group row">
-              <label for="pemilik" class="col-sm-4 col-form-label">Nama Pemilik</label>
+              <label for="name" class="col-sm-4 col-form-label">Nama Pemilik</label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" name="pemilik" value="{{ $item->pemilik }}">
+                <input type="text" class="form-control" name="name" value="{{ $item->user->name }}">
               </div>
             </div>
             <div class="form-group row">
@@ -97,7 +152,7 @@
               <label for="lokasi" class="col-sm-4 col-form-label">Lokasi</label>
               <div class="col-sm-4">
                 <small>Kecamatan :</small>
-                <select name="kecamatan_id" required class="form-control kecamatan" id="kecamatan" value="{{ old('kecamatan_id') }}">
+                <select name="kecamatan" required class="form-control kecamatan" id="kecamatan" value="{{ old('kecamatan') }}">
                   <option selected disabled>-- Pilih kecamatan --</option>
                   @foreach($data as $kec)
                     <option  value="{{ $kec->id }}">
@@ -108,13 +163,19 @@
               </div>
               <div class="col-sm-4">
                 <small>Desa :</small>
-                <select name="desa_id" required class="form-control desa" id="desa" value="{{ old('desa_id') }}">
+                <select name="desa" required class="form-control desa" id="desa" value="{{ old('desa') }}">
                   <option selected disabled>*Masukan kecamatan</option>
                 </select>
               </div>
             </div>
             <div class="form-group row">
-              <label for="hasil_tangkapan" class="col-sm-4 col-form-label">Hasil Tangkapan</label>
+              <label for="ikan" class="col-sm-4 col-form-label">Jenis Ikan</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="ikan" value="{{ $item->ikan }}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="hasil_tangkapan" class="col-sm-4 col-form-label">Hasil Tangkapan (kg)</label>
               <div class="col-sm-8">
                 <input type="number" class="form-control" name="hasil_tangkapan" value="{{ $item->hasil_tangkapan }}">
               </div>
@@ -188,7 +249,7 @@
           );
           response.forEach((element) => {
             $(".desa").append(
-                `<option value="${element["id"]}">${element["desa"]}</option>`
+                `<option value="${element["desa"]}">${element["desa"]}</option>`
             );
           });
         },

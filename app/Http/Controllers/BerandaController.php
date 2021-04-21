@@ -14,9 +14,7 @@ class BerandaController extends Controller
     public function index(Request $request)
     {
         $items = Produksi::all();
-        $things = Tangkapan::with([
-            'user', 'kecamatan'
-        ])->get();
+        $things = Tangkapan::all();
 
         return view('pages.beranda', [
             'items' => $items,

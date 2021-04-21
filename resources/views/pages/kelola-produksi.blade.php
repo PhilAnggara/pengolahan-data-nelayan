@@ -9,7 +9,15 @@
     </a>
     <div class="card shadow-sm">
       <div class="card-body">
-        <h4>Kelola Data Hasil Produksi <i class="far text-muted fa-edit ml-1"></i></h4>
+        <div class="row px-3">
+          <h4>Kelola Data Hasil Hasil Produksi <i class="far text-muted fa-edit ml-1"></i></h4>
+          <form class="form-inline nav-search ml-auto mb-2" action="{{ route('produksi.index') }}">
+            <input name="search" class="form-control form-control-sm ml-sm-5" type="search" placeholder="Search" aria-label="Search" autocomplete="off" value="{{ $keyword }}" style="width: 400px;" autofocus onfocus="var temp_value=this.value; this.value=''; this.value=temp_value">
+            <button class="btn btn-sm btn-primary my-2 my-sm-0" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </form> 
+        </div>
         <table class="table table-bordered table-responsive-sm text-center text-nowrap">
           <thead class="thead-light">
             <tr>
@@ -34,7 +42,11 @@
               <td>{{ $item->lokasi }}</td>
               <td>{{ $item->hasil_produksi }}</td>
               <td width="100px">
-                <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#edit-{{ $item->id }}">
+                <button class="btn btn-sm btn-info" style="width: 70px" type="button" data-toggle="modal" data-target="#detail-{{ $item->id }}">
+                  <i class="fas fa-eye fa-sm mr-1"></i>
+                  Detail
+                </button>
+                <button class="btn btn-sm btn-primary" style="width: 70px" type="button" data-toggle="modal" data-target="#edit-{{ $item->id }}">
                   <i class="fas fa-pen fa-sm mr-1"></i>
                   Edit
                 </button>
@@ -43,7 +55,7 @@
             @empty
             <tr>
               <th colspan="10" class="text-center">
-                Data Kosong
+                Data tidak ditemukan
               </th>
             </tr>
             @endforelse
@@ -57,13 +69,59 @@
     </div>  
   </div>
 
+  <!-- Detail -->
+  @foreach ($items as $item)
+  <div class="modal fade" id="detail-{{ $item->id }}" tabindex="-1" aria-labelledby="detailLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title font-weight-bold" id="detailLabel">Detail Tangkapan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th width="40%">Pasar</th>
+                <td>{{ $item->pasar }}</td>
+              </tr>
+              <tr>
+                <th>Lokasi</th>
+                <td>{{ $item->lokasi }}</td>
+              </tr>
+              <tr>
+                <th>Tanggal</th>
+                <td>{{ Carbon\Carbon::parse($item->created_at)->isoFormat('D MMMM Y') }}</td>
+              </tr>
+              <tr>
+                <th>Jenis Ikan</th>
+                <td>{{ $item->ikan }}</td>
+              </tr>
+              <tr>
+                <th>Hasil Produksi</th>
+                <td>{{ $item->hasil_produksi }}</td>
+              </tr>
+              <tr>
+                <th class="text-success">Terjual</th>
+                <td class="text-success font-weight-bold">{{ $item->terjual }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  @endforeach
+
   <!-- Edit -->
   @foreach ($items as $item)
   <div class="modal fade" id="edit-{{ $item->id }}" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title font-weight-bold" id="editLabel">Edit Data Hasil Tangkapan</h5>
+          <h5 class="modal-title font-weight-bold" id="editLabel">Edit Data Hasil Produksi</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

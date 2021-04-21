@@ -25,10 +25,11 @@ class TangkapanRequest extends FormRequest
     {
         return [
             // 'user_id' => 'required|integer|exists:user,id',
-            'pemilik' => 'required',
+            // 'pemilik' => 'required',
             'tanggal' => 'required',
-            // 'kecamatan_id' => 'required',
-            // 'desa_id' => 'required',
+            'kecamatan' => 'required',
+            'desa' => 'required',
+            'ikan' => 'required',
             'hasil_tangkapan' => 'required'
         ];
     }

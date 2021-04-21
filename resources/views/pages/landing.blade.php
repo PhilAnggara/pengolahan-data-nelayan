@@ -10,7 +10,6 @@
       <h1>Dinas Perikanan Kab. Kep. Siau Tagulandang Biaro</h1>
       @guest
       <a href="{{ url('login') }}" class="btn btn-primary btn-lg shadow px-5">Masuk</a>
-      <a href="{{ url('register') }}" class="btn btn-secondary btn-lg shadow px-5">Daftar</a>
       @endguest
       @auth
       <a href="{{ url('beranda') }}" class="btn btn-primary btn-lg shadow px-5">Beranda</a>
