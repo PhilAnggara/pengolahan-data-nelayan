@@ -33,4 +33,14 @@ class TangkapanRequest extends FormRequest
             'hasil_tangkapan' => 'required'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'kecamatan.required' => 'Kecamatan belum dipilih.',
+            'desa.required' => 'Desa belum dipilih.',
+            'ikan.required' => 'Jenis Ikan wajib diisi.',
+            'hasil_tangkapan.required' => 'Hasil Tangkapan wajib diisi.'
+        ];
+    }
 }

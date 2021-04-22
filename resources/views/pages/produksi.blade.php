@@ -18,7 +18,7 @@
 
             <form class="p-3 col-sm-8" action="{{ route('produksi.store') }}" method="POST">
               @csrf
-              <div class="form-group">
+              <div class="form-group mb-0">
                 <label for="lokasi">Lokasi</label>
                 <select name="lokasi" required class="form-control form-control-sm @error('lokasi') is-invalid @enderror" value="{{ old('lokasi') }}">
                   <option selected disabled>-- Pilih Lokasi --</option>
@@ -32,7 +32,7 @@
                   </span>
                 @enderror
               </div>
-              <div class="from-group mb-2">
+              <div class="from-group">
                 <label for="pasar">Nama Pasar</label>
                 <input class="form-control form-control-sm @error('pasar') is-invalid @enderror" name="pasar" type="text" placeholder="" value="{{ old('pasar') }}">
                 @error('pasar')
@@ -42,9 +42,27 @@
                 @enderror
               </div>
               <div class="from-group">
+                <label for="ikan">Jenis Ikan</label>
+                <input class="form-control form-control-sm @error('ikan') is-invalid @enderror" name="ikan" type="text" placeholder="" value="{{ old('ikan') }}">
+                @error('ikan')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
+              </div>
+              <div class="from-group">
                 <label for="hasil_produksi">Hasil Produksi</label>
                 <input class="form-control form-control-sm @error('hasil_produksi') is-invalid @enderror" name="hasil_produksi" type="number" placeholder="" value="{{ old('hasil_produksi') }}">
                 @error('hasil_produksi')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
+              </div>
+              <div class="from-group">
+                <label for="terjual">Terjual</label>
+                <input class="form-control form-control-sm @error('terjual') is-invalid @enderror" name="terjual" type="number" placeholder="" value="{{ old('terjual') }}">
+                @error('terjual')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>

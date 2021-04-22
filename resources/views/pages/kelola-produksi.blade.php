@@ -75,7 +75,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title font-weight-bold" id="detailLabel">Detail Tangkapan</h5>
+          <h5 class="modal-title font-weight-bold" id="detailLabel">Detail Produksi</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -153,9 +153,21 @@
               </div>
             </div>
             <div class="form-group row">
+              <label for="ikan" class="col-sm-4 col-form-label">Jenis Ikan</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="ikan" value="{{ $item->ikan }}">
+              </div>
+            </div>
+            <div class="form-group row">
               <label for="hasil_produksi" class="col-sm-4 col-form-label">Hasil Produksi</label>
               <div class="col-sm-8">
                 <input type="number" class="form-control" name="hasil_produksi" value="{{ $item->hasil_produksi }}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="terjual" class="col-sm-4 col-form-label">Terjual</label>
+              <div class="col-sm-8">
+                <input type="number" class="form-control text-success" name="terjual" value="{{ $item->terjual }}">
               </div>
             </div>
             <div class="text-center mt-4">

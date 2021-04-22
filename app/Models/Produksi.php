@@ -11,7 +11,7 @@ class Produksi extends Model
     protected $table = 'produksi';
 
     protected $fillable = [
-        'lokasi', 'pasar', 'hasil_produksi', 'created_at'
+        'lokasi', 'pasar', 'ikan', 'hasil_produksi', 'terjual', 'created_at'
     ];
 
 
