@@ -75,6 +75,14 @@ h5 {
   margin-bottom: 20px;
   padding: 5px 26px;
 }
+.content-user .card .btn-logout-kepala {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  border-radius: 0;
+  font-weight: 700;
+  padding: 5px 26px;
+}
 .content-user .card .btn-kotak {
   border-radius: 0;
   font-size: 16px;
